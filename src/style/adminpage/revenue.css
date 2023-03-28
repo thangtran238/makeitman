@@ -1,0 +1,12 @@
+.revenue {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width:100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--sub-color);
+  text-align: center;
+  line-height: 100px;
+  color: var(--main-color);
+}

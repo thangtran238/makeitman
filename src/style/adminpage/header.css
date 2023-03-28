@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  height: 75px;
+  padding: 20px 30px;
+  background: var(--main-color);
+}
+
+.logo h1 {
+  font-weight: 400;
+}
+
+.sub-color {
+  color: var(--sub-color) ;
+}
