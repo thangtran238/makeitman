@@ -1,0 +1,47 @@
+.table {
+  margin-top: 75px;
+  width: 100%;
+}
+
+.table thead {
+  margin-bottom: 20px;
+}
+
+.table tbody {
+  margin-top: 20px;
+  height: 100%;
+}
+
+.table tr {
+  padding: 12px 0;
+}
+.table th {
+  color: white;
+  font-size: 18px;
+  font-weight: 400;
+}
+.table td {
+  font-size: 16px;
+  font-weight: 300;
+  color: #ccc;
+}
+
+.table a {
+  text-decoration: none;
+  color: #ccc;
+  margin: 0 6px;
+}
+.table img {
+  height: 80px;
+  width: 80px;
+  object-fit: cover;
+  object-position: center;
+
+}
+.table th, .table td {
+  height: 75px;
+  text-align: center;
+  border-bottom: 1px solid var(--sub-color);
+  margin: 12px 0;
+}
+
