@@ -1,5 +1,20 @@
+.wrapper {
+  margin: 45px 20px;
+  display: flex;
+  justify-content: end;
+}
+
+.add {
+  padding: 12px 24px;
+  background: var(--sub-color);
+  border-radius: 4px;
+  border:none;
+  outline:none;
+  display: flex;
+  align-items: center;
+}
+
 .table {
-  margin-top: 75px;
   width: 100%;
 }
 

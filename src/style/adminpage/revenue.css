@@ -58,3 +58,7 @@
   visibility: 0;
   pointer-events: none;
 }
+
+svg {
+  width: 12px;
+}
