@@ -1,8 +1,10 @@
 .wrapper {
-  margin: 45px 20px;
+  margin: 0 30px;
+  margin-top: 40px;
   display: flex;
   justify-content: end;
 }
+
 
 .add {
   padding: 12px 24px;
@@ -12,9 +14,16 @@
   outline:none;
   display: flex;
   align-items: center;
+  transition: .15s ease;
+}
+
+.add:hover {
+  cursor: pointer;
+  transform: scale(150%);
 }
 
 .table {
+  margin-top: 40px;
   width: 100%;
 }
 
@@ -60,3 +69,12 @@
   margin: 12px 0;
 }
 
+.table a svg {
+  transition: .15s ease;
+  width: 20px;
+  height: 20px;
+}
+
+.table a svg:hover {
+  transform: scale(150%);
+}

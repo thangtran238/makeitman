@@ -119,6 +119,7 @@ select {
   cursor: pointer;
   color: var(--sub-color);
   position: relative;
+  overflow: hidden;
 }
 .preview img {
   width: 100%;
@@ -146,4 +147,12 @@ select {
   padding: 12px 24px;
   margin: 12px;
   border-radius: 6px;
+  background: var(--sub-color);
+  transition: .15s ease;
+  
+}
+
+.button-row button:hover {
+  cursor: pointer;
+  transform: scale(150%)
 }

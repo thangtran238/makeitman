@@ -6,10 +6,11 @@
   height: 50px;
   border-radius: 50%;
   background: var(--sub-color);
-  text-align: center;
-  line-height: 50px;
   color: var(--main-color);
   transition: .3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .revenue:hover {
