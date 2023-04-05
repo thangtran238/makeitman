@@ -1,4 +1,7 @@
-<?php 
+
+<?php
+
+
 
 function appendProduct() {
   include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Models/database.php');

@@ -1,3 +1,4 @@
+
 function addProduct() {
   let div = document.createElement("div");
   let addDivToBod = document.body.appendChild(div);

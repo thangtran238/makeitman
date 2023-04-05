@@ -4,7 +4,8 @@ function userDeploy()
   include("/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Models/database.php");
   $sqlQuery = "SELECT CONCAT('US', CAST(SUBSTR(account.userID, 3) AS UNSIGNED)) AS userID, fullname,phone,email,address,role.rolename,username,password,status FROM `users`,`account`,`role` 
                 WHERE `account`.`userID` = `users`.`userID` and users.roleID = role.roleID ORDER BY CAST(SUBSTR(account.userID, 3) AS UNSIGNED);";
-  $res = $conn->query($sqlQuery)
+  $res = $conn->query($sqlQuery);
+  $i = 1;
 ?>
 
 
@@ -50,9 +51,13 @@ function userDeploy()
               </a>
             </td>
           </tr>
-    <?php
-        }
-      }
-    } ?>
+          <?php
+              $i++;
+            }
+          }
+           ?>
     </tbody>
   </table>
+  <?php 
+}
+  ?>
