@@ -17,7 +17,7 @@
 
 <?php
 ob_start();
-$id = 0;
+$id = "";
 $id = $_GET['id'];
 
 edit($id);
@@ -33,7 +33,7 @@ function getDatabase($id)
 {
   include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Models/database.php');
   $sql_query = "SELECT CONCAT('PR', CAST(SUBSTR(productID, 3) AS UNSIGNED)) AS productID, pro_title,qty,category.typeof,price,pro_des,image FROM product,category 
-  where product.categoryID = category.categoryID and CONCAT('PR', CAST(SUBSTR(productID, 3) AS UNSIGNED)) = 'PR$id'  ORDER BY CAST(SUBSTR(productID, 3) AS UNSIGNED)";
+  where product.categoryID = category.categoryID and CONCAT('PR', CAST(SUBSTR(productID, 3) AS UNSIGNED)) = '$id'  ORDER BY CAST(SUBSTR(productID, 3) AS UNSIGNED)";
   $res = $conn->query($sql_query);
   $row = mysqli_fetch_assoc($res);
   $title = $row['pro_title'];
@@ -104,7 +104,6 @@ function edit($id)
 function apply($id)
 {
   $array = getDatabase($id);
-  $dbID = "PR".$id;
   if (
     isset($_POST['name']) || isset($_POST['quantity']) || isset($_POST['category'])
     || isset($_POST['price']) || isset($_POST['description'])
@@ -126,7 +125,7 @@ function apply($id)
         $array['img'] = $file['name'];
       }
     }
-    applyDatabase($dbID, $array['pro_tile'],$array['qty'],$array['typeof'],$array['price']
+    applyDatabase($id, $array['pro_tile'],$array['qty'],$array['typeof'],$array['price']
     ,$array['pro_des'] , $array['img'] ,$array['promo']);
   }
 }
