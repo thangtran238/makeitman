@@ -16,13 +16,15 @@
             <div class="header">
                 <div class="cart_title">
                     <div class="cart_name">
-                        <div class="cart_amout">3 | <i class="fa-solid fa-cart-shopping"></i></div>
+                        <h2>3</h2>
+                        <i class="fa-solid fa-cart-shopping"></i>
                         <h3>Shopping Cart</h3>
+                        <i class="fa-regular fa-cart-plus"></i>
                     </div>
                 </div>
                 <div class="cart_user">
                     <div class="user_name"><h4>A Quang Handsome</h4></div>
-                    <div class="user_img"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/IMG_logo_%282017%29.svg" alt=""></div>
+                    <div class="user_img"><img src="https://wiki.matbao.net/wp-content/uploads/2019/07/linux-la-gi-tong-hop-moi-kien-thuc-ve-he-dieu-hanh-linux.jpg" alt=""></div>
                     <div class="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></div>
                 </div>
             </div>

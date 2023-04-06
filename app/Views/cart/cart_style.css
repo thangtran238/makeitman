@@ -37,15 +37,18 @@ body {
     padding: 10px 10px 10px 0px;
 }
 .header .cart_title .cart_name {
-    padding:20px;
-    
-
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    gap: 10px;
 }
-.cart_amout{
-    border:solid 2px;
-    width: fit-content;
-    border-radius:10px;
-    padding:3px;
+.header .cart_title .cart_name h2{
+    color: yellow;
+    border-right:solid 1px black ;
+    border-bottom:solid 3px black ;
+    border: solid 3px black;
 }
 
 .cart_user {
@@ -61,13 +64,22 @@ body {
     align-items: center;
 
 }
-.cart_user img{
-    border:black solid 2px;
+.cart_user .user_img{
+        width: 90px;
+        height: 90px;
+        box-sizing: border-box;
+        margin: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+}
+.cart_user .user_img img{
     width: 50px;
     height: 50px;
-    padding:10px;
     border-radius: 50px;
 }
+
 .logout:hover{
     cursor: pointer;
 }
