@@ -4,7 +4,7 @@
 
 function appendProduct() {
   include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Models/database.php');
-  if (isset($_POST['submit'])) {
+  if (isset($_POST['submit-product'])) {
     $name = $_POST['name'];
     $qty = $_POST['quantity'];
     $category = $_POST['category'];

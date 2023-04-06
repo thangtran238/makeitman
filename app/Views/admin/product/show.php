@@ -35,7 +35,7 @@ function productDeploy()
           <td><?php echo $row['pro_title'] ?></td>
           <td><?php echo $row['qty'] ?></td>
           <td><?php echo $row['typeof'] ?></td>
-          <td><?php echo number_format($row['price']) . "VND" ?></td>
+          <td><?php echo number_format($row['price']) . " VND" ?></td>
           <td><?php echo $row['pro_des'] ?></td>
           <td><img src="../public/img/<?php echo $row['image'] ?>"></td>
           <td>

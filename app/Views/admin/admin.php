@@ -31,6 +31,7 @@ include("/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Controllers
         </div>
         <div class="profile">
           <p>Hello, <span class="sub-color">Admin</span> </p>
+          <a href="#">Log out</a>
         </div>
       </section>
       <section class="body">
@@ -56,7 +57,7 @@ include("/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Controllers
           <button type="submit" class="section" id="promo" name="show" value="promo">
             <div class="icon">
               <div class="numbers"><?php echo $promo = viewPromotions() ?></div>
-              <div class="title">TOKENS</div>
+              <div class="title">COUPONS</div>
             </div>
             <div class="more-info">
               <p>MORE DETAILS</p>

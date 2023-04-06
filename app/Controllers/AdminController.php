@@ -8,7 +8,7 @@ function viewProduct() {
 }
 function viewAccount() {
   include("/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Models/database.php");
-  $query = "SELECT count(`accountID`) as qty from account";
+  $query = "SELECT count(`accountID`) as qty from account where status = 0";
   $res = $conn->query($query);
   $row = mysqli_fetch_array($res);
   return $row['qty'];
@@ -32,4 +32,5 @@ include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Views/admin
 include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Views/admin/product/show.php');
 include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Views/admin/promotion/show.php');
 include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Views/admin/product/create.php');
+include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Views/admin/promotion/create.php');
 ?>
