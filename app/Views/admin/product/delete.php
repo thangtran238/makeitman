@@ -7,7 +7,7 @@ if(isset($_GET['id'])) {
 del($n);
 function getDatabase($id)
 {
-  include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Models/database.php');
+  include('./app/Models/database.php');
   $sql_query = "SELECT CONCAT('PR', CAST(SUBSTR(productID, 3) AS UNSIGNED)) AS productID, pro_title,qty,category.typeof,price,pro_des,image FROM product,category 
   where product.categoryID = category.categoryID and CONCAT('PR', CAST(SUBSTR(productID, 3) AS UNSIGNED)) = '$id'  ORDER BY CAST(SUBSTR(productID, 3) AS UNSIGNED)";
   $res = $conn->query($sql_query);
@@ -24,7 +24,7 @@ function getDatabase($id)
 }
 
   function delData($id) {
-    include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Models/database.php');
+    include('./app/Models/database.php');
 
     $sql_delete = "DELETE FROM product where `productID` = '$id'";
     return $conn->query($sql_delete);
@@ -32,7 +32,7 @@ function getDatabase($id)
 
   function del($id) {
     $array = getDatabase($id);
-    unlink("/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/public/img/".$array['img']);
+    unlink("/public/img/".$array['img']);
     delData($id);
     ob_clean();
     header('Location: http://localhost/project/makeitman/public/');

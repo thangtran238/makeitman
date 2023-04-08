@@ -3,7 +3,7 @@
 
 
 function appendProduct() {
-  include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Models/database.php');
+  include('./app/Models/database.php');
   if (isset($_POST['submit-product'])) {
     $name = $_POST['name'];
     $qty = $_POST['quantity'];
@@ -17,7 +17,7 @@ function appendProduct() {
     $stringID = mysqli_fetch_array($res)['productID'];  
     $id = (int)(substr($stringID,2)) + 1;
     if (!empty($filename)) {
-      $path = "/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/public/img/" . basename($filename);
+      $path = "./public/img/" . basename($filename);
       move_uploaded_file($file['tmp_name'],$path);
       $insertQuery = "INSERT INTO `product`(`productID`, `pro_title`, `qty`, `categoryID`, `promoID`, `price`, `pro_des`, `image`) 
                       VALUES ('PR$id','$name','$qty','$category','PROMO0','$price','$des','$filename')";
