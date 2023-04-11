@@ -8,8 +8,8 @@
   <title>Admin</title>
   <style>
     <?php
-    include("/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Views/admin/assets/style/overall.css");
-    include("/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Views/admin/assets/style/adminpage/modal.css");
+    include("./app/Views/admin/assets/style/overall.css");
+    include("./app/Views/admin/assets/style/adminpage/modal.css");
     ?>
   </style>
 </head>
@@ -31,7 +31,7 @@ if (isset($_POST['apply'])) {
 
 function getDatabase($id)
 {
-  include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Models/database.php');
+  include('./app/Models/database.php');
   $sql_query = "SELECT CONCAT('PR', CAST(SUBSTR(productID, 3) AS UNSIGNED)) AS productID, pro_title,qty,category.typeof,price,pro_des,image FROM product,category 
   where product.categoryID = category.categoryID and CONCAT('PR', CAST(SUBSTR(productID, 3) AS UNSIGNED)) = '$id'  ORDER BY CAST(SUBSTR(productID, 3) AS UNSIGNED)";
   $res = $conn->query($sql_query);
@@ -49,7 +49,7 @@ function getDatabase($id)
 
 function applyDatabase($id, $newProName, $newQty, $newCate, $newPrice, $newProdes, $newImg, $newPromo)
 {
-  include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Models/database.php');
+  include('./app/Models/database.php');
   $sql_update = "UPDATE `product` SET `pro_title`='$newProName',`qty`='$newQty',
   `categoryID`='$newCate',`promoID`='$newPromo',`price`='$newPrice',`pro_des`='$newProdes',`image`='$newImg' 
   WHERE `productID` = '$id'";
@@ -74,7 +74,7 @@ function edit($id)
             <option value="AC">Accessory</option>
           </select>
           <select name="promo" id=""> <?php
-                                      include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Models/database.php');
+                                      include('./app/Models/database.php');
 
                                       $sqlQuery = "SELECT promoID FROM promotion";
                                       $res = $conn->query($sqlQuery);
@@ -124,7 +124,7 @@ function apply($id)
     if (isset($_FILES['image'])) {
       $file = $_FILES['image'];
       $filename = $file['name'];
-      $path = "/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/public/img/" . basename($filename);
+      $path = "./public/img/" . basename($filename);
       move_uploaded_file($file['tmp_name'], $path);
       if ($file['name'] != "") {
         $array['img'] = $file['name'];
