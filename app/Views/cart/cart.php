@@ -1,3 +1,31 @@
+<?php 
+require "../../Models/cart_database.php";
+session_start();
+$id = $_GET["id"];
+$idPro = $_SESSION["product"][$id]["productID "];
+if(isset($_SESSION["product_cart"])):
+    foreach($_SESSION["product_cart"] as $k ->$v):
+        if($_SESSION["product_cart"][$k]["productID"]==$idPro): 
+            logMess("Product da ton tai");
+            break;
+        endif;
+    endforeach;
+endif;
+// $_SESSION["product_cart"][]=$_SESSION["product"][$id];
+// echo "<pre> ";
+// print_r($_SESSION["product_cart"]);
+// echo "</pre>";
+?>
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,8 +58,7 @@
             </div>
             <div class="content">
                 <div class="frame-product-list">
-                    <?php $a = 0;
-                    while($a<=33):?>
+                    <?php foreach($_SESSION["product_cart"] as $k ->$value): ?>
                     <div class="product_cart">
                         <input type="checkbox" class="styled-checkbox" name="check" id="check">
                         <div class="img"><img src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/431599/item/goods_69_431599.jpg?width=750" alt=""></div>
@@ -47,8 +74,8 @@
                         <div class="remove_udt_cart"><i class="fa fa-pen-to-square"></i><i class="fa-solid fa-trash"></i></div>
                         <div class="amount_total"><h4>300 $</h4></div>
                     </div>
-                    <?php $a+=1; 
-                    endwhile; ?>
+                    <?php endforeach;?>
+
                 </div>
             </div>
             <div class="footer">
