@@ -1,7 +1,7 @@
 <?php
 function promoDeploy()
 {
-  include("./app/Models/database.php");
+  include("../app/Models/database.php");
 
   $sqlQuery = "SELECT CONCAT('PROMO', CAST(SUBSTR(promoID, 6) AS UNSIGNED)) AS promoID, promo_name,discount,status 
               FROM promotion ORDER BY CAST(SUBSTR(promoID, 6) AS UNSIGNED);";

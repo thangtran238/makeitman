@@ -10,7 +10,7 @@ header('Location: http://localhost/project/makeitman/public/');
 exit;
 
 function delData($id) {
-  include('./app/Models/database.php');
+  include('../app/Models/database.php');
   $sql_delete = "DELETE FROM promotion where `promoID` = '$id'";
   return $conn->query($sql_delete);
 }

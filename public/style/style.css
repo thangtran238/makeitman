@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --main-color: #303030;
+  --sub-color: #49FDA6;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: Poppins, sans-serif;
+  height: 100vh;
+  transition: .15s ease;
+  background: url("https://mnprairieroots.files.wordpress.com/2013/08/st-clairs-clothing.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0, 0.8)
+}
+
+.sub-color {
+  color: var(--sub-color);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+}
+
+.header > h2 {
+  color: white;
+  font-weight: 400;
+}
+
+.log .sign-in, .log .sign-up {
+  padding: 6px 24px;
+  margin: 0 6px;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+.log .sign-in {
+  background: var(--sub-color);
+  border: none;
+  outline: none;
+  color: var(--main-color);
+}
+
+.log .sign-up {
+  background: transparent;
+  outline: none;
+  border: 1px solid var(--sub-color);
+  color: var(--sub-color);
+}
+
+.body {
+   padding: 2%;
+   text-align: center;
+ }
+
+.body .slideshow {
+  overflow: hidden;
+  height: 510px;
+  width: 100%;
+  margin: 0 auto;
+}
+ .slideshow .slide-wrapper {
+  display: flex;
+  width: 300%;
+  animation: slide 14s ease infinite;
+}
+.slide-wrapper .slide {
+  height: 500px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--main-color)
+}
+
+.slide .content {
+  color: white;
+  flex: 1;
+  padding: 0 40px;
+  text-align:justify;
+}
+.slide img {
+  flex: 1;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.content h2 {
+  font-weight: 400;
+}
+
+.button-row {
+  margin: 20px 0;
+  display: flex;
+  justify-content: end;
+}
+
+.button-row button {
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: 1px solid var(--sub-color);
+  outline: none;
+  background: var(--main-color);
+  color: var(--sub-color);
+  font-size: 16px;    
+  transition: .3s ease;
+  cursor: pointer;
+}
+
+.button-row button:hover {
+  background: var(--sub-color);
+  color: var(--main-color);
+}
+.footer {
+  color: white;
+}
+
+@keyframes slide {
+  20% {transform:translateX(0) ;}
+  40% {transform:translateX(-33.5%) ;}
+  60% {transform:translateX(-67%) ;}
+  80% {transform:translateX(-100%) ;}
+  80% {transform:translateX(0) ;}
+
+}

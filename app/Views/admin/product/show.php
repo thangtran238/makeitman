@@ -1,7 +1,7 @@
 <?php
 function productDeploy()
 {
-  include("./app/Models/database.php");
+  include("../app/Models/database.php");
   $sqlQuery = "SELECT CONCAT('PR', CAST(SUBSTR(productID, 3) AS UNSIGNED)) AS productID, pro_title,qty,category.typeof,price,pro_des,image FROM product,category 
               where product.categoryID = category.categoryID ORDER BY CAST(SUBSTR(productID, 3) AS UNSIGNED)";
   $res = $conn->query($sqlQuery);

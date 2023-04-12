@@ -7,7 +7,7 @@ if(isset($_GET['id'])) {
 del($n);
 function getDatabase($id)
 {
-  include('./app/Models/database.php');
+  include('../app/Models/database.php');
   $sql_query = "SELECT CONCAT('PR', CAST(SUBSTR(productID, 3) AS UNSIGNED)) AS productID, pro_title,qty,category.typeof,price,pro_des,image FROM product,category 
   where product.categoryID = category.categoryID and CONCAT('PR', CAST(SUBSTR(productID, 3) AS UNSIGNED)) = '$id'  ORDER BY CAST(SUBSTR(productID, 3) AS UNSIGNED)";
   $res = $conn->query($sql_query);

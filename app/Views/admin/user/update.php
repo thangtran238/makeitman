@@ -14,7 +14,7 @@ if (isset($_POST['apply'])) {
 }
 function getDatabase($id)
 {
-  include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Models/database.php');
+  include('../app/Models/database.php');
   $sql_query = "SELECT CONCAT('US', CAST(SUBSTR(account.userID, 3) AS UNSIGNED)) AS userID, fullname, phone, email, address,username, password, status FROM `users`,`account`,`role` WHERE `account`.`userID` = `users`.`userID` and users.roleID = role.roleID and `account`.`userID` = '$id' ORDER BY CAST(SUBSTR(account.userID, 3) AS UNSIGNED);";
   $res = $conn->query($sql_query);
   $row = mysqli_fetch_array($res);
@@ -55,13 +55,13 @@ function apply($id)
   }
 
 function updateUser($id,$newName,$newPhone,$newEmail,$newAddress) {
-  include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Models/database.php');
+  include('../app/Models/database.php');
   $sql_update = "UPDATE `users` SET `fullname`='$newName', `phone`='$newPhone', `email`='$newEmail', `address`='$newAddress'
   WHERE userID = '$id'";
   return $conn->query($sql_update);
 }
 function updateAccount($id,$newUsername,$newPassword) {
-  include('/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Models/database.php');
+  include('../app/Models/database.php');
   $sql_update = "UPDATE `account` SET `username`='$newUsername',`password`='$newPassword'
   where `userID` = '$id'";
   return $conn->query($sql_update);
@@ -79,8 +79,8 @@ function updateAccount($id,$newUsername,$newPassword) {
   <title>Admin</title>
   <style>
     <?php
-    include("/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Views/admin/assets/style/overall.css");
-    include("/Schooling/IT/Enviroment/xampp/htdocs/project/makeitman/app/Views/admin/assets/style/adminpage/modal.css");
+    include("../app/Views/admin/assets/style/overall.css");
+    include("../app/Views/admin/assets/style/adminpage/modal.css");
     ?>
   </style>
 </head>
