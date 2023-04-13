@@ -1,12 +1,16 @@
 
+.row{
+  position: relative;
+  top: 100px;
+}
 .col-sm-2{
     background-color:#303030;
     width: 250px;
     height: 100%;
-    position: fixed;
-    top: 100px;
+    top: 200px;
     left:0px;
     right: 40px;
+    position: fixed;
     
 }
 
@@ -53,6 +57,7 @@
     width: 1306px;
     height: 100px;
     left: 0%;
+    z-index: 2;
 } 
 .logo{
     color:#49FDA6 ;
@@ -135,12 +140,13 @@ border: 2px solid #49FDA6;
   background-color: #303030;
   text-align: center;
   color: #FFFFFF;
-  position: fixed;
+  /* position: fixed; */
   top: 100px;
   left: 215px;
   height: auto;
   font-style: normal;
   letter-spacing: 1px;
+  z-index: 1;
 }
 .best-option {
   color: #49FDA6;
@@ -148,23 +154,79 @@ border: 2px solid #49FDA6;
 .fa-brands{
   color: #49FDA6;
 }
-.container{
-  background-color: #c61313;
-  text-align: center;
-  color: #FFFFFF;
+
+.col-sm-3{
+  background-color: #FFFFFF;
+}
+.product{
+  background-color: #303030;
+  border-radius: 15px;
+  margin: 10px;
+  padding: -50px;
+  width: 250px;
+  height:  350px;;
+}
+img {
+  width: 200px; 
+  height: auto; 
+  border: 1px ; 
+  padding: 5px; 
+  display: block; 
+  margin: 0 auto; 
+  left: 30px;
+}
+#ao{
   position: absolute;
-  top: 2140px;
-  left: 210px;
-  font-style: normal;
-  letter-spacing: 1px;
+  margin-left: 30px;
+  margin-top: 30px;
 }
-.fa-solid .fa-heart{
+#quan{
   position: absolute;
-  top: 0;
-  right: 0;
+  margin-left: 20px;
+  margin-top: 30px;
+
 }
-img{
-  
+#giay{
+  position: absolute;
+  margin-left: 20px;
+  margin-top: 30px;
 }
+#nhan{
+  position: absolute;
+  margin-left: 20px; 
+  margin-top: 30px;
+}
+.icon{
+  color: #49FDA6;
+  position: absolute;
+ margin-left: 6px;
+ margin-top: 10px;
+}
+.icon_heart {
+  position: absolute;
+ margin-left: 8px;
+ 
+}
+.icon_cart{
+  position: absolute;
+  margin-left: 210px;
+ }
+.content{
+  position: absolute;
+  margin-top: 240px;
+  margin-left: 30px;
+}
+.content_nhan{
+  position: absolute;
+  margin-top: 200px;
+  margin-left: 30px;
+}
+.fa-arrow-alt-circle-left {
+margin-left: 70px;
+color: #49FDA6;
+}
+
+
+
 
 
