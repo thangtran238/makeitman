@@ -35,14 +35,13 @@
         </div>
         <div class = "row">
             <div class = "col-sm-2">
-                <div class="items">
                     <li><i class="fa-solid fa-hashtag"></i><a href="#">All</a></li>
                     <li><i class="fa-solid fa-hashtag"></i> <a href="#">T-Shirt</a></li>
                     <li><i class="fa-solid fa-hashtag"></i><a href="#">Trousers</a></li>
                     <li><i class="fa-solid fa-hashtag"></i><a href="#">Sneakers</a></li>
                     <li><i class="fa-solid fa-hashtag"></i><a href="#">Accessory</a></li>
                     <li><i class="fa-solid fa-hashtag"></i><a href="#">Underwear</a></li>
-                    <li*4></li*4>
+                    <li></li>
                     <li></li>
                     <li></li>
                     <li></li>
@@ -54,9 +53,7 @@
                     <li><i class=""></i> <span class="white">info@</span><span class="blue">MAKEIT</span><span class="white">Men.co</span></li>
                     <li> <i class=""></i>  <span class="white">101B Le Huu Trac Str,</span></li>
                     <li> <i class=""></i>  <span class="white">Phuoc My Dist</span></li>
-                    
                 </div>
-            </div>
             <div class = "col-sm-10">
                 <div><h1> The <span class="best-option">Best Option</span> For The Your Look!</h1></div>
                 <div><h5>In here, we bring you comfortable, outshine products!</h5></div>
@@ -125,11 +122,7 @@
                                 <div class=" icon_heart"><i class="fa-solid fa-heart"></i></div>
                                 <div class="icon_cart"> <i class="fa-solid fa-cart-plus"></i></div>
                             </div>
-                            <div id ="ao"><img src="../../../public/img/t-shirt2-removebg-preview.png" alt="Hình ảnh"></div>
-                            <div class ="content">
-                                <h5><span class="blue">MAKEIT</span><span class="white">Men.</span></h5>
-                                <div><h5 class = "a">T-Shirt <i class="fas fa-arrow-alt-circle-left"></i></h5></div>
-                            </div>
+                            <div id ="ao"><img src="../../../public/img/t-shirt2-removebg-preview.png" alt="Hình ảnh"></div>          
                         </div>
                     </div>
                     <div class="col-sm-3">
@@ -139,10 +132,6 @@
                         <div class="icon_cart"> <i class="fa-solid fa-cart-plus"></i></div>
                         </div>
                         <div id ="quan"><img src="../../../public/img/white-trousers-removebg-preview.png" alt="Hình ảnh"></div>
-                        <div class ="content">
-                                <h5><span class="blue">MAKEIT</span><span class="white">Men.</span></h5>
-                                <div ><h5 class = "a" >Trousers <i class="fas fa-arrow-alt-circle-left"></i></h5></div>
-                            </div>
                         </div>
                     </div>
                     <div class="col-sm-3">
@@ -152,10 +141,6 @@
                             <div class="icon_cart"> <i class="fa-solid fa-cart-plus"></i></div>
                         </div>
                         <div id ="giay"> <img src="../../../public/img/images-removebg-preview.png" alt="Hình ảnh"></div>
-                        <div class ="content">
-                                <h5><span class="blue">MAKEIT</span><span class="white">Men.</span></h5>
-                                <div ><h5 class = "a">Sneakers <i class="fas fa-arrow-alt-circle-left"></i></h5></div>
-                            </div>
                     </div>
                     </div>
                     <div class="col-sm-3">
@@ -164,14 +149,34 @@
                                 <div class=" icon_heart"><i class="fa-solid fa-heart"></i></div>
                                 <div class="icon_cart"> <i class="fa-solid fa-cart-plus"></i></div>
                             </div>
-                        <div id ="nhan"> <img src="../../../public/img/dây_chuyền-removebg-preview.png" alt="Hình ảnh"></div>
-                        <div class ="content">
+                        <div id ="nhan"> <img src="../../../public/img/dây_chuyền-removebg-preview.png" alt="Hình ảnh"></div> 
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                    <div class ="content_detail">
+                                <h5><span class="blue">MAKEIT</span><span class="white">Men.</span></h5>
+                                <div ><h5 class = "a" >Trousers <i class="fas fa-arrow-alt-circle-left"></i></h5></div>
+                            </div>
+                    </div>
+                    <div class="col-sm-3">
+                    <div class ="content_detail">
+                                <h5><span class="blue">MAKEIT</span><span class="white">Men.</span></h5>
+                                <div ><h5 class = "a">Sneakers <i class="fas fa-arrow-alt-circle-left"></i></h5></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                        <div class ="content_detail">
                                 <h5><span class="blue">MAKEIT</span><span class="white">Men.</span></h5>
                                 <div > <h5  class = "a">Accessory <i class="fas fa-arrow-alt-circle-left"></i></h5> </div>
 
                             </div>
                         </div>
-                    </div>
+                        <div class="col-sm-3">
+                        <div class ="content_detail">
+                                <h5><span class="blue">MAKEIT</span><span class="white">Men.</span></h5>
+                                <div><h5 class = "a">T-Shirt <i class="fas fa-arrow-alt-circle-left"></i></h5></div>
+                            </div>
+                        </div>
             
 
                 </div>
