@@ -5,13 +5,12 @@ error_reporting(0);
 // $R = $result->fetch_all(MYSQLI_ASSOC);
 // ---not done yet! need to solve--------------------------------------------------
 $idproduct = $_GET["productID"];
-if(!empty($_GET["productID"])):
-  $_SESSION['cart']=[];
+if(isset($_POST["addcart"]) && !empty($_GET["productID"])):
   $query= "select * from product where productID='$idproduct';";
   $result = mysqli_query($conn,$query);
   $data=mysqli_fetch_assoc($result);
   $item=[
-    $idproduct=>[
+    "$idproduct"=>[
       "pro_title"=>$data["pro_title"],
       "qty"=>$data["qty"],
       "categoryID"=>$data["categoryID"],
@@ -19,15 +18,26 @@ if(!empty($_GET["productID"])):
       "price"=>$data["price"],
       "pro_des"=>$data["pro_des"],
       "img"=>$data["img"],
-      "amount"=>$soluong
+      "amount"=>1,
+      "status"=>0
     ]
   ];
+  if(!isset($_SESSION["cart"])):
+      $_SESSION["cart"][]=$item;
+  else:
+    foreach ($_SESSION["cart"] as $key => $value) {
+      $a=0;
+      if($key ==$idproduct):
+        $a++;
+        $_SESSION["cart"][$key]['amount']+=1;
+        break;
+      endif;
+    }
+    if($a==0):
+      $_SESSION["cart"]=array_merge($_SESSION['cart'],$item);
+    endif;
+  endif;
 endif;
-if(!empty($_SESSION["cart"])){
-  echo "<pre>";
-  print_r($_SESSION["cart"]);
-  echo "</pre>";
-}
 //-------------------------------------------------------------------
 ?>
 <html lang="en">
@@ -45,6 +55,15 @@ if(!empty($_SESSION["cart"])){
 </html>
 </head>
 <body>
+  <style>
+    .frame{
+      position:relative;
+      left:200px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:30px;
+    }
+  </style>
       <div class="frame col-md-4">
           <?php 
           $query= "select * from product;";
@@ -52,16 +71,16 @@ if(!empty($_SESSION["cart"])){
           while($rows=mysqli_fetch_assoc($result)):?>
           <form action="modun.php?productID=<?php echo $rows["productID"]?>" method="post">
             <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title"><?php echo $rows["pro_title"];?></h5>
-                <p class="card-text"><?php  echo $rows["pro_des"];?></p>
-                <p class="card-text"><?php  echo $rows["price"];?></p>
-                <a class="btn btn-primary"><input type="submit" name="addcart" value="add Cart"></a>
-                <a href="#" class="btn btn-success">Order</a>
+              <img src="<?php echo $rows["img"];?>" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title"><?php echo $rows["pro_title"];?></h5>
+                  <p class="card-text"><?php  echo $rows["pro_des"];?></p>
+                  <p class="card-text"><?php  echo $rows["price"];?></p>
+                  <input type="submit" class="btn btn-primary" name="addcart" value="add Cart">
+                  <a href="#" class="btn btn-success">Order</a>
+              </div>
             </div>
-            </div>
-            </form> 
+          </form> 
           <?php endwhile;?>            
       </div>
 </body>

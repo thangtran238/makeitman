@@ -1,25 +1,11 @@
 <?php 
 require "../../Models/cart_database.php";
 session_start();
-$id = $_GET["id"];
-$idPro = $_SESSION["product"][$id]["productID "];
-if(isset($_SESSION["product_cart"])):
-    foreach($_SESSION["product_cart"] as $k ->$v):
-        if($_SESSION["product_cart"][$k]["productID"]==$idPro): 
-            logMess("Product da ton tai");
-            break;
-        endif;
-    endforeach;
-endif;
-// $_SESSION["product_cart"][]=$_SESSION["product"][$id];
 // echo "<pre> ";
-// print_r($_SESSION["product_cart"]);
+// print_r($_SESSION["cart"]);
 // echo "</pre>";
+$sl = count($_SESSION["cart"]);
 ?>
-
-
-
-
 
 
 
@@ -44,10 +30,9 @@ endif;
             <div class="header">
                 <div class="cart_title">
                     <div class="cart_name">
-                        <h2>3</h2>
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <h2><?php echo $sl ?></h2>
                         <h3>Shopping Cart</h3>
-                        <i class="fa-regular fa-cart-plus"></i>
+                        <a href="modun.php"><i class="fa fa-cart-plus"></i></a>
                     </div>
                 </div>
                 <div class="cart_user">
@@ -57,32 +42,35 @@ endif;
                 </div>
             </div>
             <div class="content">
+                <!-- ddoanj nayf caan chinh laij_________________________________________________________________ -->
                 <div class="frame-product-list">
-                    <?php foreach($_SESSION["product_cart"] as $k ->$value): ?>
+                    <?php foreach($_SESSION["cart"] as $k =>$v):?>
                     <div class="product_cart">
-                        <input type="checkbox" class="styled-checkbox" name="check" id="check">
-                        <div class="img"><img src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/431599/item/goods_69_431599.jpg?width=750" alt=""></div>
+                        <input type="checkbox" class="styled-checkbox" name="check" id="check" value='<?php echo $v["status"]?>'>
+                        <div class="img"><img src="<?php echo $v["img"]?>" alt=""></div>
                         <div class="product_name">
-                            <h5>Aos phong naam cos coo made in Trung Quooc</h5>
+                            <h5><?php echo $v["pro_title"]?></h5>
                         </div>
-                        <div class="product_price"><h4>300 $</h4></div>
+                        <div class="product_price"><h4><?php echo $v["price"]?>$</h4></div>
                         <div class="amount">
                             <i class="fa-solid fa-circle-down fa-rotate-180"></i>
-                            <input type="number">
+                            <input type="number" value="<?php echo $v['amount']?>">
                             <i class="fa-solid fa-circle-down"></i>
                         </div>
-                        <div class="remove_udt_cart"><i class="fa fa-pen-to-square"></i><i class="fa-solid fa-trash"></i></div>
+                        <div class="remove_udt_cart"><i class="fa-solid fa-trash"></i></div>
                         <div class="amount_total"><h4>300 $</h4></div>
                     </div>
                     <?php endforeach;?>
-
+                <!-- footer cana chinh lai ________________________________________________________________________________ -->
                 </div>
             </div>
             <div class="footer">
                 <div class="frame-footer-checkout">
-                    <div class="amount-pro-checkout">Amount:</div>
+                    <div class="amount-pro-checkout">Amount: <?php echo $sl?></div>
                     <div class="total">Total:</div>
-                    <div class="checkout">Checkout <i class="fa-solid fa-circle-down"></i></div>
+                    <a href="checkout.php" class="checkout">
+                     Checkout <i class="fa-solid fa-circle-down"></i>
+                    </a> 
                 </div>        
             </div>
         </div>
