@@ -1,11 +1,8 @@
 <?php 
-require "../../Models/cart_database.php";
+// require '../../Models/cart_database.php';
 session_start();
 error_reporting(0);
 $total=0;
-echo "<pre>";
-print_r($_SESSION['cart']);
-echo "</pre>";
 // to get amount of the product..
 if(isset($_SESSION["cart"])):
     $sl = count($_SESSION["cart"]);
@@ -20,25 +17,18 @@ endif;
 // incre and minus a product ____________________
 $incre =(boolean) $_GET['incre'];
 $idProC = $_GET['idProC'];
-var_dump("idProC: ",$idProC);
-echo "<br>";
-var_dump("incre:" ,$incre);
-if($idProC!=null):
+if($idProC):
     if($incre):
         $_SESSION['cart'][$idProC]['amount']+=1;
-        // $_SESSION['cart'][$idProC]['amount']-=1;
     else:
-       echo "<script> aleart('may xam lol a'); </script>";
+        $_SESSION['cart'][$idProC]['amount']-=1;
+        if(($_SESSION['cart'][$idProC]['amount'])<1):
+            $_SESSION['cart'][$idProC]['amount']=1;
+        endif;
     endif;
     // header("location:cart.php");  
 endif;
 ?>
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
