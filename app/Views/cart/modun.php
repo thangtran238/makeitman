@@ -23,7 +23,7 @@ if(isset($_POST["addcart"]) && !empty($_GET["productID"])):
     ]
   ];
   if(!isset($_SESSION["cart"])):
-      $_SESSION["cart"][]=$item;
+      $_SESSION["cart"]=$item;
   else:
     foreach ($_SESSION["cart"] as $key => $value) {
       $a=0;

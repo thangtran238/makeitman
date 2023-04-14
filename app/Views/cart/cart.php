@@ -1,10 +1,37 @@
 <?php 
 require "../../Models/cart_database.php";
 session_start();
-// echo "<pre> ";
-// print_r($_SESSION["cart"]);
-// echo "</pre>";
-$sl = count($_SESSION["cart"]);
+error_reporting(0);
+$total=0;
+echo "<pre>";
+print_r($_SESSION['cart']);
+echo "</pre>";
+// to get amount of the product..
+if(isset($_SESSION["cart"])):
+    $sl = count($_SESSION["cart"]);
+endif;
+// delete function______________________
+$del = $_GET['del'];
+if(!empty($del)):
+    unset($_SESSION['cart'][$del]);
+    header("location:cart.php");
+endif;
+
+// incre and minus a product ____________________
+$incre =(boolean) $_GET['incre'];
+$idProC = $_GET['idProC'];
+var_dump("idProC: ",$idProC);
+echo "<br>";
+var_dump("incre:" ,$incre);
+if($idProC!=null):
+    if($incre):
+        $_SESSION['cart'][$idProC]['amount']+=1;
+        // $_SESSION['cart'][$idProC]['amount']-=1;
+    else:
+       echo "<script> aleart('may xam lol a'); </script>";
+    endif;
+    // header("location:cart.php");  
+endif;
 ?>
 
 
@@ -44,30 +71,37 @@ $sl = count($_SESSION["cart"]);
             <div class="content">
                 <!-- ddoanj nayf caan chinh laij_________________________________________________________________ -->
                 <div class="frame-product-list">
-                    <?php foreach($_SESSION["cart"] as $k =>$v):?>
+                    <?php 
+                    if(isset($_SESSION['cart']) and $sl>0):
+                    foreach($_SESSION["cart"] as $k =>$v):?>
                     <div class="product_cart">
-                        <input type="checkbox" class="styled-checkbox" name="check" id="check" value='<?php echo $v["status"]?>'>
                         <div class="img"><img src="<?php echo $v["img"]?>" alt=""></div>
                         <div class="product_name">
                             <h5><?php echo $v["pro_title"]?></h5>
                         </div>
                         <div class="product_price"><h4><?php echo $v["price"]?>$</h4></div>
                         <div class="amount">
-                            <i class="fa-solid fa-circle-down fa-rotate-180"></i>
-                            <input type="number" value="<?php echo $v['amount']?>">
-                            <i class="fa-solid fa-circle-down"></i>
+                            <a href="cart.php?idProC=<?php echo $k ?>&&incre=1"><i class="fa-solid fa-circle-down fa-rotate-180"></i></a>
+                            <span><?php echo $v['amount']?></span>
+                            <a href="cart.php?idProC=<?php echo $k ?>&&incre=0"><i class="fa-solid fa-circle-down"></i></a>
                         </div>
-                        <div class="remove_udt_cart"><i class="fa-solid fa-trash"></i></div>
-                        <div class="amount_total"><h4>300 $</h4></div>
+                        <div class="remove_udt_cart"><a href="cart.php?del=<?php echo $k;?>"><i class="fa-solid fa-trash"></i></a></div>
+                        <div class="amount_total"><h4><?php echo $v['amount']*$v['price']?> $</h4></div>
                     </div>
-                    <?php endforeach;?>
+                    <?php 
+                    $total += $v['amount']*$v['price'];
+                    endforeach;
+                    else:
+                        echo "<h3 style='color:white;'> empty product </h3>";
+                    endif;
+                    ?>
                 <!-- footer cana chinh lai ________________________________________________________________________________ -->
                 </div>
             </div>
             <div class="footer">
                 <div class="frame-footer-checkout">
                     <div class="amount-pro-checkout">Amount: <?php echo $sl?></div>
-                    <div class="total">Total:</div>
+                    <div class="total">Total: <?php echo $total; ?>$</div>
                     <a href="checkout.php" class="checkout">
                      Checkout <i class="fa-solid fa-circle-down"></i>
                     </a> 
