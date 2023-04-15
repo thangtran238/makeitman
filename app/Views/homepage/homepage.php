@@ -41,11 +41,7 @@
                     <li><i class="fa-solid fa-hashtag"></i><a href="#">Sneakers</a></li>
                     <li><i class="fa-solid fa-hashtag"></i><a href="#">Accessory</a></li>
                     <li><i class="fa-solid fa-hashtag"></i><a href="#">Underwear</a></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                  <br> <br><br><br><br><br><br><br>
                     <li><i class="fas fa-map-marker-alt"></i><a href="#">Local Store </a></li>
                     <li><i class="fas fa-info-circle"></i><a href="#">About Us </a></li>
                     <li><i class="fas fa-envelope"></i><a href="#"> Contact </a></li>
@@ -59,6 +55,20 @@
                 <div><h5>In here, we bring you comfortable, outshine products!</h5></div>
                 <div><h5>Fllow us on <i class="fa-brands fa-facebook"></i> <i class="fa-brands fa-instagram"></i> <i class="fa-brands fa-twitter"></i></h5></div>
                 <div class="row">
+                    <div class="col-sm-3">
+                        <div class = "product">
+                            <div class="icon">
+                                <div class=" icon_heart"><i class="fa-solid fa-heart"></i></div>
+                                <div class="icon_cart"> <i class="fa-solid fa-cart-plus"></i></div>
+                            </div>
+                            <div id ="ao"><img src="../../../public/img/T_shirt-removebg-preview.png" alt="Hình ảnh"></div>
+                            <div class ="content">
+                                <h5><span class="blue">MAKEIT</span><span class="white">Men.</span></h5>
+                                <h5>Basic Black T-Shirt</h5>
+                                <h5>49.99$</h5>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-sm-3">
                         <div class = "product">
                             <div class="icon">
@@ -133,7 +143,7 @@
                         </div>
                         <div id ="quan"><img src="../../../public/img/white-trousers-removebg-preview.png" alt="Hình ảnh"></div>
                         </div>
-                    </div>
+                    </div> 
                     <div class="col-sm-3">
                         <div class = "product">
                         <div class="icon">
@@ -143,7 +153,7 @@
                         <div id ="giay"> <img src="../../../public/img/images-removebg-preview.png" alt="Hình ảnh"></div>
                     </div>
                     </div>
-                    <div class="col-sm-3">
+                    <!-- <div class="col-sm-3">
                         <div class = "product">
                             <div class="icon">
                                 <div class=" icon_heart"><i class="fa-solid fa-heart"></i></div>
@@ -151,8 +161,8 @@
                             </div>
                         <div id ="nhan"> <img src="../../../public/img/dây_chuyền-removebg-preview.png" alt="Hình ảnh"></div> 
                         </div>
-                    </div>
-                    <div class="col-sm-3">
+                    </div> -->
+                    <!-- <div class="col-sm-3">
                     <div class ="content_detail">
                                 <h5><span class="blue">MAKEIT</span><span class="white">Men.</span></h5>
                                 <div ><h5 class = "a" >Trousers <i class="fas fa-arrow-alt-circle-left"></i></h5></div>
@@ -176,7 +186,7 @@
                                 <h5><span class="blue">MAKEIT</span><span class="white">Men.</span></h5>
                                 <div><h5 class = "a">T-Shirt <i class="fas fa-arrow-alt-circle-left"></i></h5></div>
                             </div>
-                        </div>
+                        </div> -->
             
 
                 </div>
