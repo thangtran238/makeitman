@@ -1,6 +1,6 @@
 <?php
 echo getcwd();
-include  "./app/Controllers/AdminController.php";
+include  "../app/Controllers/AdminController.php";
 
 ?>
 <!DOCTYPE html>
@@ -14,12 +14,12 @@ include  "./app/Controllers/AdminController.php";
   <style>
     <?php
 
-    include( "./app/Views/admin/assets/style/overall.css");
-    include( "./app/Views/admin/assets/style/adminpage/header.css");
-    include( "./app/Views/admin/assets/style/adminpage/body.css");
-    include( "./app/Views/admin/assets/style/adminpage/revenue.css");
-    include( "./app/Views/admin/assets/style/adminpage/table.css");
-    include( "./app/Views/admin/assets/style/adminpage/modal.css");
+    include( "../app/Views/admin/assets/style/overall.css");
+    include( "../app/Views/admin/assets/style/adminpage/header.css");
+    include( "../app/Views/admin/assets/style/adminpage/body.css");
+    include( "../app/Views/admin/assets/style/adminpage/revenue.css");
+    include( "../app/Views/admin/assets/style/adminpage/table.css");
+    include( "../app/Views/admin/assets/style/adminpage/modal.css");
 
 
     ?>
@@ -117,8 +117,8 @@ include  "./app/Controllers/AdminController.php";
 </body>
 <script>
   <?php
-  include("./Views/admin/assets/js/activeBtn.js");
-  include("./Views/admin/assets/js/appendAddForm.js");
+  include("../app/Views/admin/assets/js/activeBtn.js");
+  include("../app/Views/admin/assets/js/appendAddForm.js");
   ?>
 </script>
 

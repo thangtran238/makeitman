@@ -1,0 +1,39 @@
+.content {
+  background: #fff;
+  height: 100%;
+  display: flex;
+}
+
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--main-color);
+  position: fixed;
+  top:80px;
+  bottom: 0;
+  width: 200px;
+  padding: 20px 0;
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.items {
+  flex: 10;
+}

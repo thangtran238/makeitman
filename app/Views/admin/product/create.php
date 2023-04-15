@@ -3,7 +3,7 @@
 
 
 function appendProduct() {
-  include('./app/Models/database.php');
+  include('../app/Models/database.php');
   if (isset($_POST['submit-product'])) {
     $name = $_POST['name'];
     $qty = $_POST['quantity'];
