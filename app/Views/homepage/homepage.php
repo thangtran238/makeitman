@@ -59,7 +59,7 @@
                 <div><h5>In here, we bring you comfortable, outshine products!</h5></div>
                 <div><h5>Fllow us on <i class="fa-brands fa-facebook"></i> <i class="fa-brands fa-instagram"></i> <i class="fa-brands fa-twitter"></i></h5></div>
                 <div class="row">
-                    <div class="col-sm-3">
+                    <!-- <div class="col-sm-3">
                         <div class = "product">
                             <div class="icon">
                                 <div class=" icon_heart"><i class="fa-solid fa-heart"></i></div>
@@ -99,8 +99,8 @@
                                 <h5>TQT-Vicepump</h5>
                                 <h5>49.99$</h5>
                             </div>
-                    </div>
-                    </div>
+                    </div> 
+                    </div>-->
                     <div class="col-sm-3">
                         <div class = "product">
                             <div class="icon">
@@ -115,7 +115,7 @@
                             </div>
                         </div>
                     </div>
-            
+        
                     <div class="col-sm-3">
                         <div class = "product">
                             <div class="icon">
