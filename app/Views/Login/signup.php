@@ -5,13 +5,22 @@ error_reporting(0);
 if(isset($_POST["subm"])):
     $errors=[];
     $fname= $_POST["fullname"];
+    $name=$_POST["name"];
     $email=$_POST['email'];
     $pass=$_POST['pass'];
+    // $phone=$_POST['phone'];
     if(empty($fname)){
         $errors["fname"]="can nhap ten";
     }else{
         if(strlen($fname)<=4){
             $errors["fname"]=" ten can hon 4 ky tu";
+        }
+    }
+    if(empty($name)){
+        $errors["name"]="can nhap ten";
+    }else{
+        if(strlen($name)<2){
+            $errors["name"]=" tên ít nhất 2 ky tu";
         }
     }
     if(filter_var($email,FILTER_VALIDATE_EMAIL)==false){
@@ -25,6 +34,10 @@ if(isset($_POST["subm"])):
             $errors['pass']="pass can 6 ky tu";
         }
     }
+    // if (ctype_alpha($phone)) {
+    //     $errors['phone']= "Số điện thoại không hợp lệ";
+    
+    // }
 endif;
 ?>
 <!DOCTYPE html>
@@ -73,7 +86,8 @@ endif;
                          <small style="color:red;"><?php echo $errors['fname']?> </small>
                         <br> 
 
-                            <input type="text" name="name" id="name" placeholder="Name" value="<?php echo $_POST['name'] ?>"   required><br><br>
+                            <input type="text" name="name" id="name" placeholder="Name" value="<?php echo $_POST['name'] ?>"   required><br>
+                            <small style="color:red;"><?php echo $errors['name']?> </small><br>
                             <div class="d_c">
                             <input type="text" name="pass" id="pass" placeholder="Password" value="<?php echo $_POST['pass'] ?>"  required> 
                             <input type="text" name="renter" id="pass" placeholder="Re-Enterpass" value="<?php echo $_POST['renter'] ?>"  required> 
@@ -111,45 +125,6 @@ include 'connect.php';
 function alert($mes){
     echo "<script>alert('$mes');</script>";
 }
-
-
-
-
-
-//     if(strlen($fname)<=4):
-//         $errors['name']="tên cần 4 ký tự trở lên";
-//     endif;
-// endif;
-
-// if(isset($_POST['email'])==true && empty($_POST['email'])==true){
-//     $errors['email']="email không được trống";
-// }
-
-// if(isset($_POST['email'])==true && empty($_POST['email'])==false){
-//     $email=$_POST['email'];
-//     if(filter_var($email,FILTER_VALIDATE_EMAIL)==false){
-//         $errors['email']= 'email không hợp lệ';
-//     }else{
-//     }
-// }
-
-// if(isset($_POST['pass'])==true && empty($_POST['pass'])==true){
-//     $errors['pass']="mật khẩu không được trống";
-// }
-
-// if(isset($_POST['pass'])==true && empty($_POST['pass'])==false){
-//     $pass=$_POST['pass'];
-//     if(strlen($pass)<6){
-//         $errors['pass']= 'mật khẩu phải dài hơn 6 ký tự';
-//     }else{
-//     }
-// }
-
-
-
-// if(isset($_POST['subm']) && empty($errors)):
-//     alert("chua nhaan du diekien");
-// endif;
 
 
 
