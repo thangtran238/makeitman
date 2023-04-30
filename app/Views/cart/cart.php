@@ -37,7 +37,6 @@ endif;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping cart</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
         <?php include ("cart_style.css")?>
     </style>
@@ -90,8 +89,6 @@ endif;
             </div>
             <div class="footer">
                 <div class="frame-footer-checkout">
-                    <div class="amount-pro-checkout">Amount: <?php echo $sl?></div>
-                    <div class="total">Total: <?php echo $total; ?>$</div>
                     <a href="checkout.php" class="checkout">
                      Checkout <i class="fa-solid fa-circle-down"></i>
                     </a> 
