@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    background-image: url('')
 }
 
 body {
@@ -16,6 +17,7 @@ body {
     height: auto;
 }
 .header{
+    
     height:70px;
     margin-top:10px;
     display: flex;
@@ -247,9 +249,22 @@ body {
     font-size:100%;
     cursor: pointer;
     gap: 3px;
+    text-decoration: none;
+    color:black;
 
 }
 .footer .frame-footer-checkout .checkout:hover .fa-circle-down{
-    color:yellow;
+    color:#2ecc71;
 }
+
+
+
+
+
+
+
+
+
+
+
 

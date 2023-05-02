@@ -13,20 +13,19 @@ if(!empty($del)):
     unset($_SESSION['cart'][$del]);
     header("location:cart.php");
 endif;
-
 // incre and minus a product ____________________
-$incre =(boolean) $_GET['incre'];
+$incre =$_GET['incre'];
 $idProC = $_GET['idProC'];
-if($idProC):
+if(isset($idProC)):
     if($incre):
         $_SESSION['cart'][$idProC]['amount']+=1;
+        header("location: ./cart.php");
     else:
         $_SESSION['cart'][$idProC]['amount']-=1;
         if(($_SESSION['cart'][$idProC]['amount'])<1):
             $_SESSION['cart'][$idProC]['amount']=1;
         endif;
     endif;
-    // header("location:cart.php");  
 endif;
 ?>
 <!DOCTYPE html>
@@ -42,7 +41,7 @@ endif;
     </style>
 </head>
 <body>
-        <div class="container">
+        <form class="container" action='<?php $_SERVER['PHP_SELF'] ?>' method="post">
             <div class="header">
                 <div class="cart_title">
                     <div class="cart_name">
@@ -64,13 +63,14 @@ endif;
                     if(isset($_SESSION['cart']) and $sl>0):
                     foreach($_SESSION["cart"] as $k =>$v):?>
                     <div class="product_cart">
+                        <input type="checkbox" name="checkout_list[]" value="<?php echo $k;?>" id="check">
                         <div class="img"><img src="<?php echo $v["img"]?>" alt=""></div>
                         <div class="product_name">
                             <h5><?php echo $v["pro_title"]?></h5>
                         </div>
                         <div class="product_price"><h4><?php echo $v["price"]?>$</h4></div>
                         <div class="amount">
-                            <a href="cart.php?idProC=<?php echo $k ?>&&incre=1"><i class="fa-solid fa-circle-down fa-rotate-180"></i></a>
+                            <a  href="cart.php?idProC=<?php echo $k ?>&&incre=1"><i class="fa-solid fa-circle-down fa-rotate-180"></i></a>
                             <span><?php echo $v['amount']?></span>
                             <a href="cart.php?idProC=<?php echo $k ?>&&incre=0"><i class="fa-solid fa-circle-down"></i></a>
                         </div>
@@ -81,7 +81,7 @@ endif;
                     $total += $v['amount']*$v['price'];
                     endforeach;
                     else:
-                        echo "<h3 style='color:white;'> empty product </h3>";
+                        echo "<h3 style='color:red;'> empty product </h3>";
                     endif;
                     ?>
                 <!-- footer cana chinh lai ________________________________________________________________________________ -->
@@ -92,9 +92,20 @@ endif;
                     <a href="checkout.php" class="checkout">
                      Checkout <i class="fa-solid fa-circle-down"></i>
                     </a> 
+                    <input type="submit" name="checkout" class="checkout" value="checkout"> 
                 </div>        
             </div>
-        </div>
-
+        </form>
+        <?php 
+        $arr_checkout_list= $_POST['checkout_list'];
+        if(isset($_POST['checkout']) ):
+            if (isset($arr_checkout_list)) {
+                # code...  
+                print_r($arr_checkout_list); 
+            }else{
+                echo "aarray not isset";
+            }
+        endif;
+        ?>
 </body>
 </html>
