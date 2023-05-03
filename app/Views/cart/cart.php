@@ -3,7 +3,6 @@
 session_start();
 
 // get username account;
-
 $user=$_SESSION['account']['username'];
 
 
@@ -95,9 +94,6 @@ endif;
             </div>
             <div class="footer">
                 <div class="frame-footer-checkout">
-                    <a href="checkout.php" class="checkout">
-                     Checkout <i class="fa-solid fa-circle-down"></i>
-                    </a> 
                     <input type="submit" name="checkout" class="checkout" value="checkout"> 
                 </div>        
             </div>
