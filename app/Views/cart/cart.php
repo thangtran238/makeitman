@@ -1,6 +1,12 @@
 <?php 
 // require '../../Models/cart_database.php';
 session_start();
+
+// get username account;
+
+$user=$_SESSION['account']['username'];
+
+
 error_reporting(0);
 $total=0;
 // to get amount of the product..
@@ -51,7 +57,7 @@ endif;
                     </div>
                 </div>
                 <div class="cart_user">
-                    <div class="user_name"><h4>A Quang Handsome</h4></div>
+                    <div class="user_name"><h4><?php echo $user?></h4></div>
                     <div class="user_img"><img src="https://wiki.matbao.net/wp-content/uploads/2019/07/linux-la-gi-tong-hop-moi-kien-thuc-ve-he-dieu-hanh-linux.jpg" alt=""></div>
                     <div class="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></div>
                 </div>
