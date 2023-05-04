@@ -29,7 +29,7 @@ if(isset($_POST["addcart"]) && !empty($_GET["productID"])):
       $a=0;
       if($key ==$idproduct):
         $a++;
-        $_SESSION["cart"][$key]['amount']+=1;
+        echo "<script> alert('this product have already in shopping cart') </script>";
         break;
       endif;
     }
