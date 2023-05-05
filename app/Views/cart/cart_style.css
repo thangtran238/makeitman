@@ -78,12 +78,16 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 3px;
 
 }
 .cart_user .user_img img{
     width: 50px;
     height: 50px;
     border-radius: 50px;
+    border:solid black 1px;
+    margin:3%;
+    padding: 2px;
 }
 
 .logout:hover{

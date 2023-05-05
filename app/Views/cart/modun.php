@@ -1,42 +1,44 @@
 <?php require "../../Models/database.php";
 session_start();
 error_reporting(0);
-
-// $R = $result->fetch_all(MYSQLI_ASSOC);
-// ---not done yet! need to solve--------------------------------------------------
 $idproduct = $_GET["productID"];
 if(isset($_POST["addcart"]) && !empty($_GET["productID"])):
-  $query= "select * from product where productID='$idproduct';";
-  $result = mysqli_query($conn,$query);
-  $data=mysqli_fetch_assoc($result);
-  $item=[
-    "$idproduct"=>[
-      "pro_title"=>$data["pro_title"],
-      "qty"=>$data["qty"],
-      "categoryID"=>$data["categoryID"],
-      "promoID"=>$data["promoID"],
-      "price"=>$data["price"],
-      "pro_des"=>$data["pro_des"],
-      "img"=>$data["img"],
-      "amount"=>1,
-      "status"=>0
-    ]
-  ];
-  if(!isset($_SESSION["cart"])):
-      $_SESSION["cart"]=$item;
-  else:
-    foreach ($_SESSION["cart"] as $key => $value) {
-      $a=0;
-      if($key ==$idproduct):
-        $a++;
-        echo "<script> alert('this product have already in shopping cart') </script>";
-        break;
+  if (isset($_SESSION['account'])){
+    $query= "select * from product where productID='$idproduct';";
+    $result = mysqli_query($conn,$query);
+    $data=mysqli_fetch_assoc($result);
+    $item=[
+      "$idproduct"=>[
+        "pro_title"=>$data["pro_title"],
+        "qty"=>$data["qty"],
+        "categoryID"=>$data["categoryID"],
+        "promoID"=>$data["promoID"],
+        "price"=>$data["price"],
+        "pro_des"=>$data["pro_des"],
+        "img"=>$data["img"],
+        "amount"=>1,
+        "status"=>0
+      ]
+    ];
+    if(!isset($_SESSION["cart"])):
+        $_SESSION["cart"]=$item;
+    else:
+      foreach ($_SESSION["cart"] as $key => $value) {
+        $a=0;
+        if($key ==$idproduct):
+          $a++;
+          echo "<script> alert('this product have already in shopping cart') </script>";
+          break;
+        endif;
+      }
+      if($a==0):
+        $_SESSION["cart"]=array_merge($_SESSION['cart'],$item);
       endif;
-    }
-    if($a==0):
-      $_SESSION["cart"]=array_merge($_SESSION['cart'],$item);
     endif;
-  endif;
+  }else{
+    header("location: ./requireaccount.php");
+  }
+  
 endif;
 //-------------------------------------------------------------------
 ?>

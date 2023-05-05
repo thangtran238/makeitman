@@ -1,0 +1,47 @@
+*{
+    padding:0%;
+    margin:0%;
+    box-sizing: border-box;
+}
+.khung{
+ display: flex;
+ justify-content: center;
+}
+.than{
+    margin-top:3%;
+    width: 350px;
+    height: 400px;
+    background:black;
+    text-align: center;
+    float: center;
+    border-radius: 10px;
+}
+.huy i{
+    float:right;
+    margin-top:10px;
+    margin-right:10px;
+}
+
+.chu{
+    width:100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chu h2{
+    color:#49FDA6;
+}
+
+.login{
+    margin-top: 20px;
+  color: #333;
+  background-color:#49FDA6;
+  border: 1px solid#49FDA6;
+  font-size: 16px;
+  padding: 10px;
+  width: 30%;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius:10px;
+}   

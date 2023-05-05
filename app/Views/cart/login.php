@@ -1,15 +1,16 @@
-
 <?php 
 require "../../Models/database.php";
 session_start();
 if(isset($_POST['submit'])):
     $name=$_POST['username'];
     $pass=$_POST['password'];
-    $query = "SELECT username,password FROM account WHERE username='$name' AND password='$pass';";
+    $query = "SELECT accountID,username,password FROM account WHERE username='$name' AND password='$pass';";
     $result = mysqli_query($conn,$query);
     $row = mysqli_fetch_assoc($result);
+    print_r($row);
     if ($row) {
         $_SESSION["account"]=[
+        "accountID"=>$row['accountID'],
         "username"=>$name,
         "password"=>$pass
         ];
