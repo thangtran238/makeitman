@@ -169,6 +169,11 @@ body {
     width: 20%;
     text-align:center;
 }
+.amount span{
+    width: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
 .amount .fa-circle-down:hover{
     cursor: pointer;
     color: #2ecc71;

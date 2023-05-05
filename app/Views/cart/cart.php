@@ -108,7 +108,7 @@ endif;
                                 <div class="product_price"><h4><?php echo $value["price"] ?></h4></div>
                                 <div class="amount">
                                     <a  href="cart.php"><i class="fa-solid fa-circle-down fa-rotate-180"></i></a>
-                                    <span></span>
+                                    <span><?php echo $value["qty"] ?></span>
                                     <a href="cart.php"><i class="fa-solid fa-circle-down"></i></a>
                                 </div>
                                 <div class="remove_udt_cart"><a href="cart.php"><i class="fa-solid fa-trash"></i></a></div>
