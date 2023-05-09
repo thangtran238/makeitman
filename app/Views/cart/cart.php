@@ -1,11 +1,29 @@
-
 <?php 
 require "../../Models/database.php";
 session_start();
-
 // get username account;
 $user=$_SESSION['account']['username'];
 $accountID=$_SESSION['account']['accountID'];
+
+
+
+// function icreament the qty of the product cart.
+// function increa_minus($idpro,$req,$conn)
+// {
+//         $query="UPDATE cart set qty=qty + 1 where productID ='HT13' AND accountID = 'ac01';";
+//         $conn->query($query);
+//         echo "id product: $idpro"."require: ".$req;
+// }
+// $idpro = $_GET["idpro"];
+// $req = (int)$_GET["req"];
+// if (isset($idpro)&& isset($req)&& !empty($idpro)&& !empty($req)) {
+//     increa_minus("$idpro",$req,$conn);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+//     // header("location: ./cart.php");
+// //    $dk= isset($req)&& isset($req)&& !empty($req)&& !empty($req);
+// //    var_dump($dk);
+// }
+
+
 // error_reporting(0);
 // $total=0;
 // // to get amount of the product..
@@ -34,14 +52,106 @@ $accountID=$_SESSION['account']['accountID'];
 // endif;
 
 // Get data from cart table____:
-$q="SELECT * FROM product WHERE productID IN(SELECT productID from cart where accountID='$accountID');";
-$result=$conn->query($q);
+// $q="SELECT * FROM product WHERE productID IN(SELECT productID from cart where accountID='$accountID');";
+
+
+
+
+// _____________    DELETE PRODUCT_____________
+
+function delete_cart($idpro,$conn)
+{
+    $query = "DELETE FROM cart WHERE productID = '$idpro';";
+    $conn ->query($query);
+    echo "<script> alert('delete successfully')</script>";
+}
+
+$iddel = $_GET['iddel'];
+if( isset($iddel) && $iddel ){
+    delete_cart($iddel,$conn);
+}
+
+// __________________________________________________________
+
+//______________  INREAMEMT AND MINUS QUANTITY OF SHOPPING CART _________________________
+
+function increament($idIncreament, $conn,$accountID)    
+{
+    $query = "SELECT qty FROM cart WHERE productID = '$idIncreament' AND accountID = '$accountID';";
+    $result = $conn ->query($query);
+    $row = mysqli_fetch_assoc($result);
+
+    if ($row) {
+        $qty = $row['qty'];
+        $qty++;
+    
+        $query = "UPDATE cart SET qty = $qty WHERE accountID = '$accountID' AND productID = '$idIncreament';";
+        $conn->query($query);
+    }
+}
+
+
+
+$idinreament = $_GET['idinreament'];
+$req = $_GET['req'];
+$accountID=$_SESSION['account']['accountID'];
+if(isset($idinreament) && $req ==1){
+    increament($idinreament, $conn,$accountID);
+    $req =0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$query="SELECT product.productID, product.pro_title, product.img, product.price, 
+       product.pro_des, cart.qty, 
+       product.categoryID, product.promoID 
+FROM product
+JOIN cart ON product.productID = cart.productID
+WHERE cart.accountID = '$accountID';";
+
+
+$result=$conn->query($query);
 $data = array();
 while ($row = mysqli_fetch_assoc($result)){
     $data[]=$row; 
 }
 // RESORT THE DATA---
 ksort($data);
+
 // insert data into session SHOPPING_CART-------------------
 if(!empty($data)):
     foreach($data as $key => $value):
@@ -58,11 +168,7 @@ if(!empty($data)):
         $productc[$id]=$array;
     endforeach;
     $_SESSION['shopping_cart']=$productc;
-// echo "<pre>";
-// print_r($_SESSION['shopping_cart']);
-// echo "</pre>";
 endif;
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,19 +206,19 @@ endif;
                     <div class="content">
                         <div class="frame-product-list">
                             <div class="product_cart">
-                                <input type="checkbox" name="checkout_list[]" value="" id="check">
+                                <input type="checkbox" name="checkout_list[]" value="<?php echo $key?>" id="check">
                                 <div class="img"><img src="<?php echo $value["img"] ?>" alt=""></div>
                                 <div class="product_name">
                                     <h5><?php echo $value["pro_title"] ?></h5>
                                 </div>
                                 <div class="product_price"><h4><?php echo $value["price"] ?></h4></div>
                                 <div class="amount">
-                                    <a  href="cart.php"><i class="fa-solid fa-circle-down fa-rotate-180"></i></a>
+                                    <a  href="cart.php?req=<?php echo 1 ?>&& idinreament=<?php echo $key?>"><i class="fa-solid fa-circle-down fa-rotate-180"></i></a>
                                     <span><?php echo $value["qty"] ?></span>
-                                    <a href="cart.php"><i class="fa-solid fa-circle-down"></i></a>
+                                    <a href="cart.php?req=<?php echo 0 ?>&& idinreament=<?php echo $key?>"><i class="fa-solid fa-circle-down"></i></a>
                                 </div>
-                                <div class="remove_udt_cart"><a href="cart.php"><i class="fa-solid fa-trash"></i></a></div>
-                                <div class="amount_total">chua tinh</div>
+                                <div class="remove_udt_cart"><a href="cart.php?iddel=<?php echo $key ?>"><i class="fa-solid fa-trash"></i></a></div>
+                                <div class="amount_total"><?php echo $value["qty"]*$value['price']?></div>
                             </div>
                         </div>
                     </div>
@@ -133,22 +239,16 @@ endif;
         endif;
         ?>
     </form>
-<!--     
-        // $arr_checkout_list= $_POST['checkout_list'];
-        // if(isset($_POST['checkout']) ):
-        //     if (isset($arr_checkout_list)) {
-        //         # code...  
-        //         print_r($arr_checkout_list); 
-        //     }else{
-        //         echo "aarray not isset";
-        //     }
-        // endif; -->
-        
-
-        <h1>
-            - them tinh gia roi tong nua <br> 
-            - lay them truong QTY tu cart <br>
-            - loc cac du lieu can thiet
-        </h1>
+    <?php
+        $arr_checkout_list= $_POST['checkout_list'];
+        if(isset($_POST['checkout']) ):
+            if (isset($arr_checkout_list)) {
+                # code...  
+                print_r($arr_checkout_list); 
+            }else{
+                echo "aarray not isset";
+            }
+        endif;
+    ?>
 </body>
 </html>
