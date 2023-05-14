@@ -1,21 +1,25 @@
 <?php require "./database.php";
 session_start();
-error_reporting(0);
+// error_reporting(0);
+// if(isset($_SESSION['account'])):
+//   print_r($_SESSION['account']);
+// else:
+//   echo "<h1> session account not set </h1>";
+// endif;
 if(isset($_POST["addcart"]) && !empty($_GET["productID"])):
   $idproduct = $_GET["productID"];
+  $accountID=$_SESSION['account']['accountID'];
   if (isset($_SESSION['account'])){
-    $query = "SELECT productID FROM cart WHERE productID ='$idproduct';";
+    $query = "SELECT productID FROM cart WHERE productID ='$idproduct' AND accountID ='$accountID' ;";
     $result = mysqli_query($conn,$query);
     $rowCount = mysqli_num_rows($result);
     if($rowCount):
       echo "<script> alert( 'This product has exist in cart')</script>";
       header("location: modun.php");
     else:
-      $user=$_SESSION['account']['username'];
-      $accountID=$_SESSION['account']['accountID'];
       $query= "INSERT INTO cart(accountID,productID,qty) VALUES ('$accountID','$idproduct',1);";
-      $result = mysqli_query($conn,$query);
-      echo "<script> alert( 'Adding successfull!')</script>";
+      $result = mysqli_query($conn,$query); 
+      echo "<script > alert( 'Adding successfull!')</script>";
       header("location: modun.php");
     endif;
   }else{

@@ -4,8 +4,9 @@ session_start();
 // get username account id account;
 $user=$_SESSION['account']['username'];
 $accountID=$_SESSION['account']['accountID'];
+print_r($_SESSION["account"]);
 
-// _____________    DELETE PRODUCT______________)__________________
+// _____________    DELETE PRODUCT________________________________
 
 function delete_cart($idpro,$conn)
 {
