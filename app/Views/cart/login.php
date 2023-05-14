@@ -9,11 +9,12 @@ if(isset($_POST['submit'])):
     $row = mysqli_fetch_assoc($result);
     print_r($row);
     if ($row) {
-        $_SESSION["account"]=[
+        $acc=[
         "accountID"=>$row['accountID'],
         "username"=>$name,
         "password"=>$pass
         ];
+        $_SESSION["account"] = $acc;
         echo "<script>alert('successfull move to cart'); </script>";
         header('location: ./cart.php');
     }else{
