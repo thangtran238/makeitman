@@ -4,8 +4,6 @@ session_start();
 // get username account id account;
 $user=$_SESSION['account']['username'];
 $accountID=$_SESSION['account']['accountID'];
-print_r($_SESSION["account"]);
-
 // _____________    DELETE PRODUCT________________________________
 
 function delete_cart($idpro,$conn)
@@ -53,7 +51,7 @@ function minus($idIncreament, $conn,$accountID)
         $conn->query($query);
         header("location: cart.php");
     }
-}
+}   
 $idinreament = $_GET['idinreament'];
 $req = $_GET['req'];
 $accountID=$_SESSION['account']['accountID'];
@@ -116,7 +114,7 @@ endif;
     </style>
 </head>
 <body>
-    <form class="container" action='<?php $_SERVER['PHP_SELF'] ?>' method="post">
+    <form class="container" action='' method="post">
         <div class="header">
             <div class="cart_title">
                 <div class="cart_name">
@@ -156,7 +154,7 @@ endif;
                                     <a href="cart.php?req=<?php echo 0 ?>&& idinreament=<?php echo $key?>"><i class="fa-solid fa-circle-down"></i></a>
                                 </div>
                                 <div class="remove_udt_cart"><a href="cart.php?iddel=<?php echo $key ?>"><i class="fa-solid fa-trash"></i></a></div>
-                                <div class="amount_total"><?php echo $value["qty"]*$value['price']?></div>
+                                <div class="amount_total"><?php echo $value["qty"]*$value['price'];  $total=0;$total+= $value["qty"]*$value['price'];?></div>
                             </div>
                         </div>
                     </div>
@@ -180,16 +178,17 @@ endif;
         endif;
         ?>
     </form>
-    <?php
-        $arr_checkout_list= $_POST['checkout_list'];
-        if(isset($_POST['checkout']) ):
-            if (isset($arr_checkout_list)) {
-                # code...  
-                print_r($arr_checkout_list); 
-            }else{
-                echo "aarray not isset";
-            }
-        endif;
-    ?>
+
 </body>
 </html>
+<?php
+$arr_checkout_list= $_POST['checkout_list'];
+if(isset($_POST['checkout']) ):
+    if(isset($arr_checkout_list) and count($arr_checkout_list)>0):
+        $_SESSION["checkout_list"]= $arr_checkout_list;
+        echo '<script> window.location.href = "../Payment/payment.php";</script>';
+    else:
+        echo "<script> alert('no product selected')</script>";
+    endif;
+endif;
+?>

@@ -50,6 +50,7 @@ body{
 
 .table .thead{
     background-color: #49FDA6;
+    color:black;
 }
 .table .item .img{
     border: solid 1px #49FDA6 ;
