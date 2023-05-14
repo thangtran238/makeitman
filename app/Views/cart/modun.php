@@ -1,4 +1,4 @@
-<?php require "../../Models/database.php";
+<?php require "./database.php";
 session_start();
 error_reporting(0);
 if(isset($_POST["addcart"]) && !empty($_GET["productID"])):

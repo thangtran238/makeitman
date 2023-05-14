@@ -1,5 +1,5 @@
 <?php 
-require "../../Models/database.php";
+require "./database.php";
 session_start();
 if(isset($_POST['submit'])):
     $name=$_POST['username'];

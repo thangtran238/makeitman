@@ -1,5 +1,5 @@
 <?php 
-require "../../Models/database.php";
+require "./database.php";
 session_start();
 // get username account id account;
 $user=$_SESSION['account']['username'];
@@ -101,11 +101,6 @@ if(!empty($data)):
     $_SESSION['shopping_cart']=$productc;
 endif;
 ?>
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
