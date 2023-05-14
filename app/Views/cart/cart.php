@@ -64,6 +64,7 @@ function delete_cart($idpro,$conn)
     $query = "DELETE FROM cart WHERE productID = '$idpro';";
     $conn ->query($query);
     echo "<script> alert('delete successfully')</script>";
+    header("location: cart.php");
 }
 
 $iddel = $_GET['iddel'];
@@ -87,6 +88,24 @@ function increament($idIncreament, $conn,$accountID)
     
         $query = "UPDATE cart SET qty = $qty WHERE accountID = '$accountID' AND productID = '$idIncreament';";
         $conn->query($query);
+        header("location: cart.php");
+    }
+}
+
+
+function minus($idIncreament, $conn,$accountID)    
+{
+    $query = "SELECT qty FROM cart WHERE productID = '$idIncreament' AND accountID = '$accountID';";
+    $result = $conn ->query($query);
+    $row = mysqli_fetch_assoc($result);
+
+    if ($row) {
+        $qty = $row['qty'];
+        $qty--;
+    
+        $query = "UPDATE cart SET qty = $qty WHERE accountID = '$accountID' AND productID = '$idIncreament';";
+        $conn->query($query);
+        header("location: cart.php");
     }
 }
 
@@ -95,9 +114,14 @@ function increament($idIncreament, $conn,$accountID)
 $idinreament = $_GET['idinreament'];
 $req = $_GET['req'];
 $accountID=$_SESSION['account']['accountID'];
+
 if(isset($idinreament) && $req ==1){
     increament($idinreament, $conn,$accountID);
     $req =0;
+}else{
+    if(isset($idinreament) && $req ==0){
+        minus($idinreament, $conn,$accountID);
+    }
 }
 
 
@@ -149,8 +173,6 @@ $data = array();
 while ($row = mysqli_fetch_assoc($result)){
     $data[]=$row; 
 }
-// RESORT THE DATA---
-ksort($data);
 
 // insert data into session SHOPPING_CART-------------------
 if(!empty($data)):
@@ -167,7 +189,7 @@ if(!empty($data)):
         ];
         $productc[$id]=$array;
     endforeach;
-    $_SESSION['shopping_cart']=$productc;
+    $_SESSION['shopping_cart']= count($data)>0 ? $productc : [];
 endif;
 ?>
 <!DOCTYPE html>
@@ -200,7 +222,7 @@ endif;
         </div>
         <?php 
         if($user): 
-            if(!empty($_SESSION['shopping_cart'])):
+            if(!empty($_SESSION['shopping_cart']) and $_SESSION['shopping_cart'] !=[] ):
                 foreach ($_SESSION['shopping_cart'] as $key => $value):
         ?>
                     <div class="content">
