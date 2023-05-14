@@ -1,7 +1,7 @@
 <?php 
 require "../../Models/database.php";
 session_start();
-// get username account;
+// get username account id account;
 $user=$_SESSION['account']['username'];
 $accountID=$_SESSION['account']['accountID'];
 
@@ -137,7 +137,7 @@ endif;
         </div>
         <?php 
 
-        // ____user login Or not login ______ 
+        // ____check user login Or not login ______ 
         if($user): 
             // ______check session shopping_cart  NULL ?_________________
             if(!empty($_SESSION['shopping_cart']) and $_SESSION['shopping_cart'] !=[] and $rowCount):
