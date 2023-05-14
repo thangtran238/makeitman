@@ -5,59 +5,7 @@ session_start();
 $user=$_SESSION['account']['username'];
 $accountID=$_SESSION['account']['accountID'];
 
-
-
-// function icreament the qty of the product cart.
-// function increa_minus($idpro,$req,$conn)
-// {
-//         $query="UPDATE cart set qty=qty + 1 where productID ='HT13' AND accountID = 'ac01';";
-//         $conn->query($query);
-//         echo "id product: $idpro"."require: ".$req;
-// }
-// $idpro = $_GET["idpro"];
-// $req = (int)$_GET["req"];
-// if (isset($idpro)&& isset($req)&& !empty($idpro)&& !empty($req)) {
-//     increa_minus("$idpro",$req,$conn);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-//     // header("location: ./cart.php");
-// //    $dk= isset($req)&& isset($req)&& !empty($req)&& !empty($req);
-// //    var_dump($dk);
-// }
-
-
-// error_reporting(0);
-// $total=0;
-// // to get amount of the product..
-// if(isset($_SESSION["cart"])):
-//     $sl = count($_SESSION["cart"]);
-// endif;
-// // delete function______________________
-// $del = $_GET['del'];
-// if(!empty($del)):
-//     unset($_SESSION['cart'][$del]);
-//     header("location:cart.php");
-// endif;
-// // incre and minus a product ____________________
-// $incre =$_GET['incre'];
-// $idProC = $_GET['idProC'];
-// if(isset($idProC)):
-//     if($incre):
-//         $_SESSION['cart'][$idProC]['amount']+=1;
-//         header("location: ./cart.php");
-//     else:
-//         $_SESSION['cart'][$idProC]['amount']-=1;
-//         if(($_SESSION['cart'][$idProC]['amount'])<1):
-//             $_SESSION['cart'][$idProC]['amount']=1;
-//         endif;
-//     endif;
-// endif;
-
-// Get data from cart table____:
-// $q="SELECT * FROM product WHERE productID IN(SELECT productID from cart where accountID='$accountID');";
-
-
-
-
-// _____________    DELETE PRODUCT_____________
+// _____________    DELETE PRODUCT______________)__________________
 
 function delete_cart($idpro,$conn)
 {
@@ -66,7 +14,6 @@ function delete_cart($idpro,$conn)
     echo "<script> alert('delete successfully')</script>";
     header("location: cart.php");
 }
-
 $iddel = $_GET['iddel'];
 if( isset($iddel) && $iddel ){
     delete_cart($iddel,$conn);
@@ -91,8 +38,6 @@ function increament($idIncreament, $conn,$accountID)
         header("location: cart.php");
     }
 }
-
-
 function minus($idIncreament, $conn,$accountID)    
 {
     $query = "SELECT qty FROM cart WHERE productID = '$idIncreament' AND accountID = '$accountID';";
@@ -101,16 +46,13 @@ function minus($idIncreament, $conn,$accountID)
 
     if ($row) {
         $qty = $row['qty'];
-        $qty--;
+        $qty = $qty <2 ? 1 : --$qty;
     
         $query = "UPDATE cart SET qty = $qty WHERE accountID = '$accountID' AND productID = '$idIncreament';";
         $conn->query($query);
         header("location: cart.php");
     }
 }
-
-
-
 $idinreament = $_GET['idinreament'];
 $req = $_GET['req'];
 $accountID=$_SESSION['account']['accountID'];
@@ -123,58 +65,25 @@ if(isset($idinreament) && $req ==1){
         minus($idinreament, $conn,$accountID);
     }
 }
+// ______________________________________________________________________________________
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ___________________________ select product to show on shopping cart___________________________
 $query="SELECT product.productID, product.pro_title, product.img, product.price, 
        product.pro_des, cart.qty, 
        product.categoryID, product.promoID 
 FROM product
 JOIN cart ON product.productID = cart.productID
 WHERE cart.accountID = '$accountID';";
-
-
 $result=$conn->query($query);
+$rowCount = mysqli_num_rows($result);
 $data = array();
 while ($row = mysqli_fetch_assoc($result)){
     $data[]=$row; 
 }
-
-// insert data into session SHOPPING_CART-------------------
+//_______________ insert data into session SHOPPING_CART-------------------
 if(!empty($data)):
     foreach($data as $key => $value):
         $id = $value["productID"];
@@ -189,9 +98,15 @@ if(!empty($data)):
         ];
         $productc[$id]=$array;
     endforeach;
-    $_SESSION['shopping_cart']= count($data)>0 ? $productc : [];
+    $_SESSION['shopping_cart']=$productc;
 endif;
 ?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -209,7 +124,7 @@ endif;
         <div class="header">
             <div class="cart_title">
                 <div class="cart_name">
-                    <h2> <?php if(isset( $_SESSION['shopping_cart'])) echo count($_SESSION['shopping_cart'])?></h2>
+                    <h2> <?php if(isset( $_SESSION['shopping_cart'])) echo $rowCount?></h2>
                     <h3>Shopping Cart</h3>
                     <a href="modun.php"><i class="fa fa-cart-plus"></i></a>
                 </div>
@@ -221,9 +136,14 @@ endif;
             </div>
         </div>
         <?php 
+
+        // ____user login Or not login ______ 
         if($user): 
-            if(!empty($_SESSION['shopping_cart']) and $_SESSION['shopping_cart'] !=[] ):
+            // ______check session shopping_cart  NULL ?_________________
+            if(!empty($_SESSION['shopping_cart']) and $_SESSION['shopping_cart'] !=[] and $rowCount):
                 foreach ($_SESSION['shopping_cart'] as $key => $value):
+
+                    // __________ SHOW PRODUCTS OUT ____________________
         ?>
                     <div class="content">
                         <div class="frame-product-list">
@@ -254,9 +174,12 @@ endif;
                     </div>
         <?php 
             else:
+
+                // if session has no data show this!____________
                 echo" <h1> Empty product!</h1>";
             endif;
         else:
+            // if user not login show this.
             include "./requireaccount.php";
         endif;
         ?>

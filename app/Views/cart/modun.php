@@ -1,44 +1,26 @@
 <?php require "../../Models/database.php";
 session_start();
 error_reporting(0);
-$idproduct = $_GET["productID"];
 if(isset($_POST["addcart"]) && !empty($_GET["productID"])):
+  $idproduct = $_GET["productID"];
   if (isset($_SESSION['account'])){
-    $query= "select * from product where productID='$idproduct';";
+    $query = "SELECT productID FROM cart WHERE productID ='$idproduct';";
     $result = mysqli_query($conn,$query);
-    $data=mysqli_fetch_assoc($result);
-    $item=[
-      "$idproduct"=>[
-        "pro_title"=>$data["pro_title"],
-        "qty"=>$data["qty"],
-        "categoryID"=>$data["categoryID"],
-        "promoID"=>$data["promoID"],
-        "price"=>$data["price"],
-        "pro_des"=>$data["pro_des"],
-        "img"=>$data["img"],
-        "amount"=>1,
-        "status"=>0
-      ]
-    ];
-    if(!isset($_SESSION["cart"])):
-        $_SESSION["cart"]=$item;
+    $rowCount = mysqli_num_rows($result);
+    if($rowCount):
+      echo "<script> alert( 'This product has exist in cart')</script>";
+      header("location: modun.php");
     else:
-      foreach ($_SESSION["cart"] as $key => $value) {
-        $a=0;
-        if($key ==$idproduct):
-          $a++;
-          echo "<script> alert('this product have already in shopping cart') </script>";
-          break;
-        endif;
-      }
-      if($a==0):
-        $_SESSION["cart"]=array_merge($_SESSION['cart'],$item);
-      endif;
+      $user=$_SESSION['account']['username'];
+      $accountID=$_SESSION['account']['accountID'];
+      $query= "INSERT INTO cart(accountID,productID,qty) VALUES ('$accountID','$idproduct',1);";
+      $result = mysqli_query($conn,$query);
+      echo "<script> alert( 'Adding successfull!')</script>";
+      header("location: modun.php");
     endif;
   }else{
     header("location: ./requireaccount.php");
   }
-  
 endif;
 //-------------------------------------------------------------------
 ?>
