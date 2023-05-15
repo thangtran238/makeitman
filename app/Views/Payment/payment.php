@@ -10,6 +10,7 @@ foreach($list_products as $value):
     JOIN cart ON product.productID = cart.productID
     WHERE cart.productID in('$value');";
     $result = mysqli_query($conn,$query);
+    
     while($row = mysqli_fetch_assoc($result)):
         $idpro = $row['productID'];
         $item =[
@@ -21,9 +22,13 @@ foreach($list_products as $value):
             "pro_des"=>$row['pro_des'],
             "img"=>$row['img']
         ];
-        $total += intval($item['price']) * intval($item['qty']);
+        
         $arr_list_checkout[$idpro]=$item;
     endwhile;
+endforeach;
+$total =0;
+foreach($arr_list_checkout as $key => $value):
+    $total += intval($value['price']) * intval($value['qty']);
 endforeach;
 
 // ________ select name and information of user_____________________
@@ -113,9 +118,6 @@ $row = mysqli_fetch_assoc($result);
 
 <?php
 if(isset($_POST['buy'])):
-    // $fullname = $_POST["name"];
-    // $phone = $_POST["phone"];
-    // $address = $_POST["address"];
     $dateTime = date('d-m-Y H:i:s');
     //____get lenght to set oderID_________
     $query = "SELECT orderID FROM order_user;";
@@ -124,11 +126,33 @@ if(isset($_POST['buy'])):
     $row ++;
     $row ="OD".$row;
     $accountID=$_SESSION['account']['accountID'];
-    var_dump($row);
     $query = "INSERT INTO order_user(orderID,date,accountID) VALUES ('$row','$dateTime','$accountID');";
     // ALTER TABLE order_user MODIFY date varchar(50);
     mysqli_query($conn, $query);
-    echo '<script> window.location.href = "./config.php";</script>';
+
+    // _________INSERT DATA INTO order_detail________________________
+    foreach($arr_list_checkout as $key => $value):
+        $qtyproduct = $value['qty'];
+        $price = $value['price'];
+        $query ="SELECT order_detailID FROM order_detail;";
+        $result =mysqli_query($conn,$query);
+        $countIDOD= mysqli_num_rows($result);
+        $IDODD = "ODD".$countIDOD;
+        $query = "INSERT INTO `order_detail`(`order_detailID`, `order_userID`, `productID`, `qty`, `price`, `cardID`) 
+                  VALUES ('$IDODD','$row','$key','$qtyproduct','$price','CI00');";
+        mysqli_query($conn,$query);
+    // ___________________Delete products have bought in cart table_____________________
+        $query_del = "DELETE FROM cart WHERE productID = '$key' AND accountID = '$accountID';";
+        $res= mysqli_query($conn,$query_del);
+        if($res):
+        ?>
+            <script>
+             alert('Thank you');
+             window.location.href = "../cart/cart.php";
+            </script>";
+        <?php
+        endif;
+    endforeach;
 endif;
 
 ?>
