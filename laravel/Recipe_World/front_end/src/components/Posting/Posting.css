@@ -1,0 +1,149 @@
+.posting-page {
+    background: linear-gradient(to right, #73cda0, #28a745, #73cda0, #28a745);
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 40px;
+
+}
+.posting-content {
+    background: #eee;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  text-align: center;
+  padding: 12px;
+}
+
+.wrapper-class {
+  padding: 1rem ;
+  border: 1px solid #ccc;
+}
+
+.editor-class {
+  background-color: lightgray;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+
+.toolbar-class {
+  border: 1px solid #ccc;
+}
+
+.preview {
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-save-post {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+#category {
+  margin-left: 16px;
+}
+
+.uploaded-images {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.image-thumbnail {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+/* .input-title {
+    width: 90%;
+    background-color: #ccc;
+    border: none;
+}
+.input-title input {} */
+
+.wrap-category {
+  margin-left: 16px;
+}
+
+.input-title {
+  width: calc(100% - 34px);
+  height: 45px;
+  padding: 8px;
+  font-size: 28px;
+  border: none;
+  background-color: #ccc;
+  box-sizing: border-box;
+  border-radius: 10px;
+  text-align: center;
+  margin-left: 16px;
+  margin-right: 18px;
+  margin-bottom: 17px;
+}
+
+.input-title::placeholder {
+  color: black;
+  font-size: 20px;
+  /* font-weight: bold; */
+  font-size: 28px;
+}
+
+.input-title:focus::placeholder {
+    color: transparent;
+}
+
+select {
+  /* Reset */
+  appearance: none;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  /* Personalize */
+  width: 20em;
+  height: 3em;
+  padding: 0 4em 0 1em;
+  color: black;
+  border-radius: 0.25em;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+
+  /* <option> colors */
+  option {
+    color: inherit;
+    background-color: black !important;
+  }
+
+  /* Remove focus outline */
+  &:focus {
+    outline: none;
+  }
+
+  /* Remove IE arrow */
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+
+.uploaded-images {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.image-thumbnail {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}

@@ -1,0 +1,12 @@
+if (imgFile) {
+      const formData = new FormData()
+      formData.append('file', inforProfile.avatar)
+      formData.append("upload_preset", "gl32w86e")
+      formData.append("cloud_name", "dx88ipscr")
+      await axios.post("https://api.cloudinary.com/v1_1/dx88ipscr/image/upload", formData)
+        .then((res) => {
+          handleSave({ ...inforProfile, avatar: res.data.secure_url });
+        })
+    } else {
+      handleSave(inforProfile);
+    }
